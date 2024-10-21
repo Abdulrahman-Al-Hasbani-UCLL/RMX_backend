@@ -3,13 +3,8 @@ using Restaurant_manager_x_backend.Models;
 
 namespace Restaurant_manager_x_backend.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }
-
         public DbSet<Dish> Dishes { get; set; }
     }
 }
