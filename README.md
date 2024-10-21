@@ -43,4 +43,5 @@ Add useful documentation here:
 
 - [.NET SDK](https://dotnet.microsoft.com/en-us/download)
 - [C# dev kit](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csdevkit)
+- [EF tools](https://learn.microsoft.com/en-us/ef/core/get-started/overview/install)
 
