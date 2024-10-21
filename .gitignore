@@ -37,4 +37,4 @@ msbuild.wrn
 .vs/
 
 #Env
-#.env
+.env
