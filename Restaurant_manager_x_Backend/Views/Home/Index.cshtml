@@ -1,0 +1,29 @@
+@{
+    ViewData["Title"] = "API Documentation";
+}
+
+<h1>API Documentation</h1>
+
+<h2>DishController</h2>
+<ul>
+    <li><strong>GET: api/Dish</strong> - Get all dishes</li>
+    <li><strong>GET: api/Dish/{id}</strong> - Get a specific dish by ID</li>
+    <li><strong>POST: api/Dish</strong> - Add a new dish</li>
+    <li><strong>PUT: api/Dish/{id}</strong> - Update an existing dish</li>
+    <li><strong>DELETE: api/Dish/{id}</strong> - Delete a dish</li>
+    <li><strong>POST: api/Dish/{id}/add-ingredient</strong> - Add an ingredient to a dish</li>
+    <li><strong>POST: api/Dish/{id}/remove-ingredient</strong> - Remove an ingredient from a dish</li>
+    <li><strong>GET: api/Dish/{id}/contains-ingredient/{ingredient}</strong> - Check if a dish contains a specific ingredient</li>
+</ul>
+
+<h2>UserController</h2>
+<ul>
+    <li><strong>GET: api/User</strong> - Get all users</li>
+    <li><strong>GET: api/User/{id}</strong> - Get a specific user by ID</li>
+    <li><strong>POST: api/User</strong> - Add a new user</li>
+    <li><strong>PUT: api/User/{id}</strong> - Update an existing user</li>
+    <li><strong>DELETE: api/User/{id}</strong> - Delete a user</li>
+    <li><strong>POST: api/User/{id}/add-role</strong> - Add a role to a user</li>
+    <li><strong>POST: api/User/{id}/remove-role</strong> - Remove a role from a user</li>
+    <li><strong>GET: api/User/{id}/has-role/{role}</strong> - Check if a user has a specific role</li>
+</ul>
