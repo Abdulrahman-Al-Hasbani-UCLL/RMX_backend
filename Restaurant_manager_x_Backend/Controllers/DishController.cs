@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Restaurant_manager_x_backend.Data;
 using Restaurant_manager_x_backend.Models;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Restaurant_manager_x_backend.Controllers
@@ -49,7 +50,7 @@ namespace Restaurant_manager_x_backend.Controllers
             _context.Dishes.Add(dish);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetDish", new { id = dish.Id }, dish);
+            return CreatedAtAction("GetDish", new { id = dish.id }, dish);
         }
 
         // PUT: api/Dish/5
@@ -57,7 +58,7 @@ namespace Restaurant_manager_x_backend.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutDish(int id, Dish dish)
         {
-            if (id != dish.Id)
+            if (id != dish.id)
             {
                 return BadRequest();
             }
@@ -102,7 +103,54 @@ namespace Restaurant_manager_x_backend.Controllers
 
         private bool DishExists(int id)
         {
-            return _context.Dishes.Any(e => e.Id == id);
+            return _context.Dishes.Any(e => e.id == id);
+        }
+
+         // Add an ingredient to a dish
+        [HttpPost("{id}/add-ingredient")]
+        public async Task<IActionResult> AddIngredient(int id, [FromBody] string ingredient)
+        {
+            var dish = await _context.Dishes.FindAsync(id);
+            if (dish == null)
+            {
+                return NotFound();
+            }
+
+            dish.AddIngredient(ingredient);
+            _context.Entry(dish).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        // Remove an ingredient from a dish
+        [HttpPost("{id}/remove-ingredient")]
+        public async Task<IActionResult> RemoveIngredient(int id, [FromBody] string ingredient)
+        {
+            var dish = await _context.Dishes.FindAsync(id);
+            if (dish == null)
+            {
+                return NotFound();
+            }
+
+            dish.RemoveIngredient(ingredient);
+            _context.Entry(dish).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return NoContent();
+        }
+
+        // Check if a dish contains a specific ingredient
+        [HttpGet("{id}/contains-ingredient/{ingredient}")]
+        public async Task<ActionResult<bool>> ContainsIngredient(int id, string ingredient)
+        {
+            var dish = await _context.Dishes.FindAsync(id);
+            if (dish == null)
+            {
+                return NotFound();
+            }
+
+            return dish.ContainsIngredient(ingredient);
         }
     }
 }
